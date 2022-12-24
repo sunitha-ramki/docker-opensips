@@ -37,3 +37,34 @@ You can set different variables to tune your deployment:
 
 Released docker packages are visible on DockerHub
 https://hub.docker.com/r/opensips/opensips
+
+
+
+## Sunitha's changes after opensips make build success
+ * In container bash shell in /root, created .opensips-cli.cfg
+ * From https://github.com/OpenSIPS/opensips-cli/blob/master/etc/default.cfg
+ * copied default config to .opensips-cli.cfg
+ * updated the file: log_level: DEBUG
+ * commented fifo lines 
+ * added lines: 
+ * database_admin_url: mysql://root@192.168.0.103:3306
+ * database_url: mysql://opensips:opensipsrw@192.168.0.103:3306/opensips
+ * ++++++++++++++++++++++++
+ * In Mariadb deleted opensips db and opensips user
+ * Ran command opensips-cli -x database create opensips
+ * It created opensips db, tables  and user opensips with permissions
+ * ++++++++++++++++++++++++
+ * To enable opensips.log in /var/log/opensips.log
+ * From https://www.oreilly.com/library/view/building-telephony-systems/9781785280610/ch03s03.html
+ * rsyslog was not found in container bash shell
+ * apt-get install rsyslog procps wget
+ * edit /etc/rsyslog.conf and added last line 
+ * Local0.*                      -/var/log/opensips.log
+ * /etc/init.d/rsyslog restart threw an error on imklog 
+ * solution is : in container bash shell enter sed -i '/imklog/s/^/#/' /etc/rsyslog.conf
+ * /etc/init.d/rsyslog restart
+ * Now /var/log/opensips.log is present
+ * /etc/init.d/opensips restart
+ * ++++++++++++++++++++++++
+ * To check a package installed, ran cmd  dpkg -L php-mysql 
+ * dpkg -L opensips-mysql-module 
