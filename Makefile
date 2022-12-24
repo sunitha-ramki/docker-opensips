@@ -1,9 +1,9 @@
-NAME ?= opensips
-OPENSIPS_VERSION ?= 3.1
+NAME ?= opensipsrazvan
+OPENSIPS_VERSION ?= 3.3
 OPENSIPS_BUILD ?= releases
-OPENSIPS_DOCKER_TAG ?= latest
+OPENSIPS_DOCKER_TAG ?= 3.3
 OPENSIPS_CLI ?= true
-OPENSIPS_EXTRA_MODULES ?=
+OPENSIPS_EXTRA_MODULES ?= opensips-mysql-module
 
 all: build start
 
