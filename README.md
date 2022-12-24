@@ -1,3 +1,21 @@
+# Sunitha's starting
+ * Forked https://github.com/OpenSIPS/docker-opensips to sunitha's github account
+ * In acer ubuntu os shell create a dir opensips_razvan
+ * cd opensips_razvan
+ * git init
+ * git clone git@github.com:OpenSIPS/docker-opensips.git
+ * updated Dockerfile to debian:bullseye and opensips version from 3.1 to 3.3
+ * included curl and apt-utils to get installed  
+ * changed key to curl command from opensips documetation 
+ * https://apt.opensips.org/packages.php?os=bullseye
+ * changed Makefile also to opensips 3.3
+ * In ubuntu os shell gave cmd : make build
+ * docker run --name opensipsrazvan -p 192.168.0.103:5061:5060 -itd opensips/opensips:3.3 
+ * Because host 5060 is already exposed to old opensips mapped to 5061
+ * opensips/opensips:3.3 is the image name
+
+
+
 # OpenSIPS Docker Image
 http://www.opensips.org/
 
